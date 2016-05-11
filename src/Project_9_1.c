@@ -23,6 +23,7 @@ Window *window;                 // Our program's window
 static TextLayer *string_layer; // The layer that displays the string
 static TextLayer *cursor_layer; // The layer that displays the cursor
 static GFont font;              // Our custom monospaced font
+int left_side, top_side;        // Position of our string_layer
 
 // Declarations for the project
 int cursor_position = 0;                            // Cursor position.  We'll start at 0 (far left)
@@ -39,10 +40,6 @@ static void refresh_screen() {
 
 
 static void set_cursor_layer_position() {
-  Layer *window_layer = window_get_root_layer(window);
-  GRect window_frame = layer_get_frame(window_layer);
-  int left_side = (window_frame.size.w - TEXT_WIDTH) / 2;
-  int top_side = (window_frame.size.h - CHARACTER_HEIGHT) / 2;
   layer_set_frame(text_layer_get_layer(cursor_layer), GRect(left_side + (cursor_position * CHARACTER_WIDTH), top_side + CHARACTER_HEIGHT, CHARACTER_WIDTH, CURSOR_THICKNESS));
 }
 
